@@ -31,7 +31,7 @@
             $foto = "";
             $config['upload_path']  = './assets/img/baloga-spot/';
             $config['allowed_types']        = 'jpg|png|jpeg';
-            $config['max_size']             = 10000; // max 3 mb
+            $config['max_size']             = 50000; // max 3 mb
             $config['file_name']    = uniqid();
 
             $this->load->library('upload', $config);
@@ -92,7 +92,7 @@
             $foto = "";
             $config['upload_path']  = './assets/img/baloga-spot/';
             $config['allowed_types']        = 'jpg|png|jpeg';
-            $config['max_size']             = 10000; // max 3 mb
+            $config['max_size']             = 50000; // max 3 mb
             $config['file_name']    = uniqid();
 
             $this->load->library('upload', $config);
