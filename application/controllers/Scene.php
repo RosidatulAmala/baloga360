@@ -200,6 +200,15 @@
 
 
 
+        // ubah setting an default utama
+        function sunting_detail_scene( $id_scene_info ) {
+
+            $this->M_scene->updateDefaultDataScene( $id_scene_info );
+        }
+
+
+
+
 
 
 

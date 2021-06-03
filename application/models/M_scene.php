@@ -115,6 +115,30 @@
 
 
 
+        // ubah setting default scene
+        function updateDefaultDataScene( $id_scene_info ) {
+
+            // ubah settingan "scene_default" menjadi "tidak"
+            $this->db->where('id_scene_info', $id_scene_info)->update('scene_detail', ['scene_default' => "tidak"]);
+
+            $newSetting = array(
+
+                'scene_default' => "iya"
+            );
+
+            $kondisiUpdate = array(
+
+                'id_scene_info' => $id_scene_info,
+                'id_spot'       => $this->input->post('id_spot')
+            );
+            $this->db->where( $kondisiUpdate )->update('scene_detail', ['scene_default' => "iya"]);
+            
+            // redirect
+            redirect('scene/composition/'. $id_scene_info);
+
+        }
+
+
 
         function model_updatescene( $id_scene_info ) {
 

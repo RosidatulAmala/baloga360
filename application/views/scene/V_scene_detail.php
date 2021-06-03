@@ -184,9 +184,24 @@
                                         ?>
                                         <a href="<?php echo base_url('scene/builder/'. $id_scene_info.'/'. $rowSceneDet['id_scene_detail'] ) ?>">
                                         <div class="form-group">
-                                        
-                                            <div class="card card-body" style="border: 1px solid #e0e0e0">
+											
+											<?php
+
+												$colorStatus = "";
+												$statusText = "";
+												if ( $rowSceneDet['scene_default'] == "iya" ) {
+
+													$colorStatus = "#ef5350";
+													$statusText = '<span class="font-weight-bold text-success"><span class="label label-success label-dot mr-2"></span> Scene Utama</span>';
+												} else {
+
+													$colorStatus = "#ffcdd2";
+												}
+											?>
+                                            <div class="card card-body" style="border: 1px solid #e0e0e0; border-left: 5px solid <?php echo $colorStatus ?>">
                                                 <h4><?php echo $rowSceneDet['nama'] ?></h4>
+												<?php echo $statusText ?>
+												
                                                 <small>Klik untuk mengubah</small>
                                             </div>
                                         
@@ -221,12 +236,73 @@
 
                                         <?php if ( $scene_detail->num_rows() > 0 ) { ?>
 
+										
+										<!--begin::Button-->
+										<div class="text-right">
+										<button  data-toggle="modal" data-target="#default-setting" type="button" class="btn btn-light-success font-weight-bold">
+											<span class="svg-icon svg-icon-md">
+												<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo5\dist/../src/media/svg/icons\Code\Puzzle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+														<rect x="0" y="0" width="24" height="24"/>
+														<path d="M19,11 L20,11 C21.6568542,11 23,12.3431458 23,14 C23,15.6568542 21.6568542,17 20,17 L19,17 L19,20 C19,21.1045695 18.1045695,22 17,22 L5,22 C3.8954305,22 3,21.1045695 3,20 L3,17 L5,17 C6.65685425,17 8,15.6568542 8,14 C8,12.3431458 6.65685425,11 5,11 L3,11 L3,8 C3,6.8954305 3.8954305,6 5,6 L8,6 L8,5 C8,3.34314575 9.34314575,2 11,2 C12.6568542,2 14,3.34314575 14,5 L14,6 L17,6 C18.1045695,6 19,6.8954305 19,8 L19,11 Z" fill="#000000" opacity="0.3"/>
+													</g>
+												</svg>
+												<!--end::Svg Icon-->
+											</span>Pengaturan</button>
+											<!--end::Button-->
+										</div>
+
+
                                         <h5>Hasil komposisi dari sebuah scene</h5>
                                         <label for="">Klik untuk mendetail dari hasil yang</label>
                                         <a class="font-weight-bold" href="<?php echo base_url() ?>" target="_blank"> telah dimodfikasi</a>
 
                                         <iframe src="<?php echo base_url('scene/iframepanorama/'. $id_scene_info) ?>" style="width: 100%; height: 400px; border: 2px solid #e0e0e0; border-radius: 5px"></iframe>
                                         
+
+
+
+										
+										<!-- Modal-->
+										<div class="modal fade" id="default-setting" data-backdrop="static"
+												tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+													<div class="modal-content">
+
+                                                        <form action="<?php echo base_url('scene/sunting_detail_scene/'. $id_scene_info ) ?>" method="POST">
+
+														<div class="modal-body">
+															<h4>Ubah Bagian</h4>
+                                                            <small>Pilih pengaturan dibawah ini</small> <br><br>
+
+                                                            <div class="form-group">
+                                                                <label>Ubah Scene Utama : </label>
+                                                                <select name="id_spot" class="form-control" id="" required="">
+                                                                    <option value="">Pilih salah satu</option>
+                                                                    
+                                                                    <?php foreach ( $scene_detail->result_array() AS $row ) : ?>
+                                                                    <option value="<?php echo $row['id_spot'] ?>" <?php if ( $row['scene_default'] == "iya" ) echo 'selected="selected"' ?>>
+																		<?php echo $row['nama'] ?>
+																	</option>
+                                                                    <?php endforeach; ?>
+                                                                </select>
+                                                                <span class="form-text text-muted">Scene utama saat ini</span>
+                                                            </div>
+															
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-light-primary btn-sm font-weight-bold" data-dismiss="modal">Batal</button>
+															<button class="btn btn-primary btn-sm font-weight-bold">Perbarui Sekarang</button>
+														</div>
+
+
+                                                        </form>
+													</div>
+												</div>
+											</div>
+
+
+
                                         <?php } else {
                                             
                                             echo svg();
