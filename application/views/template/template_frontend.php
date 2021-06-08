@@ -105,7 +105,7 @@
                 <!-- logo end-->
 
                 
-                <a href="<?php echo base_url('find') ?>" class="add-list color-bg">Tour Baloga <span><i class="fal fa-layer-plus"></i></span></a>
+                <a href="<?php echo base_url('main/tour') ?>" class="add-list color-bg">Tour Baloga <span><i class="fal fa-layer-plus"></i></span></a>
                 
                 <!-- header opt end--> 
 
@@ -133,21 +133,19 @@
                 <!--  navigation --> 
                 <div class="nav-holder main-menu">
                     <nav>
+                        <?php $menu = $this->uri->segment(2); ?>
                         <ul class="no-list-style">
                             <li>
-                                <a href="<?php echo base_url() ?>" class="act-link">Halaman Utama</a>
+                                <a href="<?php echo base_url() ?>" class="<?php if ( $menu == "" ) echo 'act-link' ?>">Halaman Utama</a>
                             </li>
                             <li>
-                                <a href="#">Fasilitas</a>
+                                <a href="<?php echo base_url('main/tour') ?>" class="<?php if ( $menu == "tour" ) echo 'act-link' ?>">Fasilitas</a>
                             </li>
                             <li>
-                                <a href="#">Galeri</a>
+                                <a href="<?php echo base_url('main/gallery') ?>" class="<?php if ( $menu == "gallery" ) echo 'act-link' ?>">Galeri</a>
                             </li>
                             <li>
-                                <a href="blog.html">Profil </a>
-                            </li>
-                            <li>
-                                <a href="blog.html">FAQ</a>
+                            <a href="<?php echo base_url('main/profile') ?>" class="<?php if ( $menu == "profile" ) echo 'act-link' ?>">Profil Baloga</a>
                             </li>
                         </ul>
                     </nav>
@@ -186,41 +184,20 @@
                             <div class="col-md-6">
                                 <div class="footer-widget fl-wrap">
                                     <div class="footer-logo"><a href="<?php echo base_url() ?>"></a>
-                                        <!-- <img src="<?php echo base_url() ?>assets/front-user/images/logo.png" alt=""></a> -->
-                                        <h1>Belum Ada Logo</h1>
+                                        <!-- <img src="https://jtp.id/batulovegarden/images/logo_wahana.png" alt="" style="width: 300px"></a> -->
+                                        
                                     </div>
                                     <div class="footer-contacts-widget fl-wrap">
-                                        <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida.   </p>
+                                        <h1 style="color: #f5f5f5; text-align: left">From Batu Love Garden - BALOGA</h1> <br>
+                                        <p>
+                                        "Batu Love Garden (BALOGA) merupakan one stop point yang menghadirkan berbagai jenis tanaman dalam berbagai wahana rekreasi. Setiap pengunjung akan disuguhkan dengan hawa sejuk Kota Batu serta hamparan luas kebun dan taman bunga. tidak hanya berhenti disitu BALOGA sebagai salah satu bagian dari Jawa Timur Park Group tetap mengusung konsep edukasi secara langsung maupun tidak langsung pada setiap pengunjung."
+                                        </p>
                                        
                                     </div>
                                 </div>
                             </div>
                             <!-- footer-widget end-->
-                            <!-- footer-widget  -->
-                            <div class="col-md-6">
-                                <div class="footer-widget fl-wrap ">
-                                    <h3>Our  Twitter</h3>
-                                    <div class="footer-contacts-widget fl-wrap">
-                                        <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida.   </p>
-                                        <ul  class="footer-contacts fl-wrap no-list-style">
-                                            <li><span><i class="fal fa-envelope"></i> Mail :</span><a href="#" target="_blank">yourmail@domain.com</a></li>
-                                            <li> <span><i class="fal fa-map-marker"></i> Adress :</span><a href="#" target="_blank">USA 27TH Brooklyn NY</a></li>
-                                            <li><span><i class="fal fa-phone"></i> Phone :</span><a href="#">+7(111)123456789</a></li>
-                                        </ul>
-                                        <div class="footer-social">
-                                            <span>Find  us on: </span>
-                                            <ul class="no-list-style">
-                                                <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- footer-widget end-->
+                           
                         </div>
                     </div>
                     <!-- footer bg-->
@@ -236,7 +213,7 @@
                 <!--sub-footer-->
                 <div class="sub-footer  fl-wrap">
                     <div class="container">
-                        <div class="copyright"> &#169; Match Futsal <?php echo date('Y') ?> .  All rights reserved.</div>
+                        <div class="copyright"> &#169; Batu Love Garden <?php echo date('Y') ?> .  All rights reserved.</div>
                         <div class="subfooter-nav">
                             <ul class="no-list-style">
                                 <li><a href="#">Terms of use</a></li>

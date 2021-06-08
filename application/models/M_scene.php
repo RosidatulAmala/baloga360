@@ -6,6 +6,85 @@
     class M_scene extends CI_Model {
         
 
+
+        function model_scene_info( $id_scene_info = null ) {
+
+            // data scene info
+            $data = array();
+
+            if ( $id_scene_info ) {
+
+                $where = array('id_scene_info' => $id_scene_info);
+
+            } else {
+
+                $where = ['scene_status' => "aktif"];
+                
+            }
+
+            $dataSceneInfo = $this->db->get_where('scene_info', $where);
+
+            if ( $dataSceneInfo->num_rows() > 0 ) {
+
+                foreach ( $dataSceneInfo->result_array() AS $row ) {
+
+
+                    $detail = array();
+
+
+                    // data scene detail by info id
+                    $this->db->select('scene_detail.*, spot.*')->from('scene_detail');
+                    $this->db->join('spot', 'spot.id_spot = scene_detail.id_spot');
+
+                    $where = array(
+
+                        'scene_detail.id_scene_info'    => $row['id_scene_info'],
+                        'scene_default' => "iya"
+                    );
+
+                    $this->db->where($where);
+
+                    $dataScene_detail = $this->db->get();
+                    foreach ( $dataScene_detail->result_array() AS $rowDet ) {
+
+                        array_push( $detail, $rowDet );
+                    }
+
+
+                    // ----------------------
+                    array_push( $data, array(
+
+                        'info'      => $row,
+                        'detail'    => $detail
+                    ) );
+                    
+                }
+            }
+
+
+            return $data;
+
+
+            
+        }
+
+
+        // all scene created
+        function model_allscene() {
+
+            $this->db->select('scene_detail.*, spot.*')->from('scene_detail');
+            $this->db->join('spot', 'spot.id_spot = scene_detail.id_spot');
+            $this->db->group_by('scene_detail.id_spot');
+
+            $dataScene_detail = $this->db->get();
+
+            return $dataScene_detail;
+            
+        }
+
+
+
+
         // menampilkan data spot pariwisata
         function model_tampilscene( $key = null ) {
 
@@ -265,7 +344,7 @@
             // perubahan default scene apabila : iya
             if ( $scene_default == "iya" ) {
 
-                $where = ['scene_default' => "iya"];
+                $where = ['scene_default' => "iya", 'id_scene_info' => $id_scene_info];
                 $this->db->where( $where );
                 $dataSceneDetail = $this->db->get('scene_detail');
 

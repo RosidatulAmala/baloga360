@@ -7,9 +7,15 @@
 
 
         // menampilkan data galeri pariwisata
-        function model_tampilgaleri() {
+        function model_tampilgaleri( $where = null ) {
 
-            return $this->db->get('gallery');
+            if ( $where ) {
+
+                return $this->db->get_where('gallery', $where);
+            } else {
+
+                return $this->db->get('gallery');
+            }
         }
 
 

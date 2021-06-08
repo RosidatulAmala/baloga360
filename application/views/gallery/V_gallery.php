@@ -154,9 +154,10 @@
 											<thead>
 												<tr>
 													<th width="5%">No</th>
+													<th>Gambar</th>
 													<th width="20%">Nama</th>
 													<th width="30%">Caption</th>
-													<th width="15%">Status Ditampilkan</th>
+													<th width="10%">Status Ditampilkan</th>
 													<th width="15%">Pembuatan</th>
 													<th>Opsi</th>
 												</tr>
@@ -170,10 +171,37 @@
 
                                                         <tr>
                                                             <td><?php echo $nomor ?></td>
-                                                            <td><?php echo $row['name'] ?></td>
-                                                            <td><?php echo $row['caption'] ?></td>
-                                                            <td><?php echo $row['status_ditampilkan'] ?></td>
-                                                            <td><?php echo date('d M Y H.i A', strtotime($row['created_at'])) ?></td>
+															<td>
+																<?php
+																
+																	$img = "https://alppetro.co.id/dist/assets/images/default.jpg";
+
+																	// cek gambar 
+																	if ( $row['photo'] ) {
+
+																		$img = base_url('assets/img/baloga-gallery/'. $row['photo']);
+																	}
+																?>
+																<a href="<?php echo $img ?>" target="_blank">
+																	<img src="<?php echo $img ?>" alt="Photo" style="width: 50px; height: 50px; object-fit: cover; border: 1px solid #e0e0e0; border-radius: 5px">
+																</a>
+															</td>
+                                                            <td>
+																<small class="text-muted">Nama foto</small> <br>
+																<?php echo $row['name'] ?>
+															</td>
+                                                            <td>
+																<small class="text-muted">Keterangan tambahan</small> <br>
+																<?php echo $row['caption'] ?>
+															</td>
+                                                            <td>
+																<small class="text-muted">Status Galeri</small> <br>
+																<?php echo $row['status_ditampilkan'] ?>
+															</td>
+                                                            <td>
+																<small class="text-muted">Dibuat pada</small> <br>
+																<?php echo date('d M Y H.i A', strtotime($row['created_at'])) ?>
+															</td>
                                                             <td>
                                                             
                                                                 <a href="<?php echo base_url('gallery/edit/'. $row['id_gallery']) ?>" class="btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
