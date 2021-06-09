@@ -1,23 +1,49 @@
+
+
 <!-- wrapper-->
             <div id="wrapper">
                 <!-- content-->
                 <div class="content">
                     
 
-                        <iframe src="<?php echo base_url('scene/iframepanorama/'. $id_scene_info) ?>    " style="width: 100%; height: 500px" frameborder="0"></iframe>
-                        
+                    <!--section  -->
+                    <section class="hero-section" data-scrollax-parent="true" style="height: 88vh;">
+                        <div class="bg-tabs-wrap">
+                            <iframe src="<?php echo base_url('scene/iframepanorama/'. $id_scene_info) ?>" style="width: 100%; height: 93vh;" frameborder="0"></iframe>
+                            <?php
+                                if ( $scene['info_scene']['scene_music'] ) {
+
+                                    echo '<audio id="myaudio" autoplay loop>
+                                        <source src="'.base_url('assets/file/bg-music/'. $scene['info_scene']['scene_music']).'" >
+                                    </audio>';
+                                }
+                            ?>
+                        </div>
+                        <div class="container small-container" style="margin-top: 220px">
+                            
+                            <!-- main-search-input-tabs end-->
+                            <div class="hero-categories">
+                                <h4 class="hero-categories_title">Pilih menu dibawah ini untuk melakukan penelusuran lebih lanjut</h4>
+                                <ul class="no-list-style">
+                                    <li><a href="<?php echo base_url() ?>" class="custom-scroll-link"><i class="far fa-home"></i><span>Halaman Utama</span></a></li>
+                                    <li><a href="#sec1" class="custom-scroll-link"><i class="fal fa-map-marked"></i><span>Spot Lain</span></a></li>
+                                    <li><a href="<?php echo base_url('main/profile') ?>"><i class="fal fa-comments-alt"></i><span>Hubungi Baloga</span></a></li>
+                                    
+                                    <?php if ( $scene['info_scene']['scene_music'] ) { ?>
+                                    <li><a href="javascript:void(0)" id="setting-audio"><i class="fas fa-volume-mute" id="turn-off"></i><span>Matikan Suara</span></a></li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <!--section end-->
                     
-                    <!-- Map end -->  
-                    <div class="clearfix"></div>
-                    <section class="gray-bg small-padding no-top-padding-sec">
+                    
+            
+                    <section class="gray-bg no-top-padding-sec slw-sec" id="sec1">
                         <div class="container">
                             <!-- list-main-wrap-header-->
                             <div class="list-main-wrap-header fl-wrap   block_box no-vis-shadow no-bg-header fixed-listing-header">
-                                <!-- list-main-wrap-title-->
-                                <div class="list-main-wrap-title">
-                                    <h2><span>Tour Baloga</span></h2>
-                                </div>
-                                <!-- list-main-wrap-title end-->
                                 <!-- list-main-wrap-opt-->
                                 <div class="list-main-wrap-opt">
                                     <!-- price-opt end-->
@@ -33,8 +59,8 @@
                             </div>
                             <!-- list-main-wrap-header end-->   
                             <div class="fl-wrap">
-                                <div class="mob-nav-content-btn mncb_half color2-bg show-list-wrap-search ntm fl-wrap"><i class="fal fa-filter"></i>  Filters</div>
-                                <div class="mob-nav-content-btn mncb_half color2-bg schm ntm fl-wrap"><i class="fal fa-map-marker-alt"></i>  View on map</div>
+                                <!-- <div class="mob-nav-content-btn mncb_half color2-bg show-list-wrap-search ntm fl-wrap"><i class="fal fa-filter"></i>  Filters</div>
+                                <div class="mob-nav-content-btn mncb_half color2-bg schm ntm fl-wrap"><i class="fal fa-map-marker-alt"></i>  View on map</div> -->
                                
                                 <!-- listing-item-container -->
                                 <div class="listing-item-container init-grid-items fl-wrap nocolumn-lic three-columns-grid">
@@ -126,12 +152,32 @@
                 <!--content end-->
             </div>
             <!-- wrapper end-->
-
+            
 
             <script>
-            
-            function autoResize(iframe) {
-                // $(iframe).height($(iframe).contents().find('html').height());
-            }
+
+                $(function() {
+
+                    var audio = document.getElementById("myaudio");
+                    var audioCondition = 0;
+
+                    $('#setting-audio').click(function() {
+
+                        if ( audioCondition == 0)  {
+                            
+                            $(this).html('<i class="fas fa-volume" id="turn-on"></i><span>Hidupkan Suara</span>');     
+                            audio.volume = 0;  
+                            
+                            audioCondition = 1;                            
+                            
+                        } else {
+                           
+                            $(this).html('<i class="fas fa-volume-mute" id="turn-off"></i><span>Matikan Suara</span>');                       
+                            audio.volume = 1;
+
+                            audioCondition = 0;
+                        }
+                    });
+                });
             
             </script>

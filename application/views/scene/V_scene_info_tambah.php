@@ -123,7 +123,7 @@
 
 													<div class="row">
 													
-														<div class="col-md-12">
+														<div class="col-md-5">
 															<div class="form-group">
 																<label>Status</label>
 																<div class="radio-inline">
@@ -135,6 +135,13 @@
 																	<span></span>Disembunyikan</label>
 																</div>
 																<span class="form-text text-muted">Status gambar baloga</span>
+															</div>
+														</div>
+														<div class="col-md-5">
+															<div class="form-group">
+																<label>Background Music</label>
+																<input type="file" name="userfile" class="form-control">
+																<span class="form-text text-muted">Masukkan musik latarbelakang</span>
 															</div>
 														</div>
 													

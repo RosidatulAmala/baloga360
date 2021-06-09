@@ -168,6 +168,38 @@
         
         function insertDataSceneInfo(){
 
+
+            // inisialisasi variabel 
+            $musik = "";
+            $config['upload_path']  = './assets/file/bg-music/';
+            $config['allowed_types']        = 'mp3';
+            $config['max_size']             = 50000; // max 50 mb
+            $config['file_name']    = uniqid();
+
+            $this->load->library('upload', $config);
+            
+            // cek apakah user melakukan upload musik
+            if ( ! empty($_FILES['userfile']['name']) ) {
+
+                // cek
+                if ( $this->upload->do_upload('userfile') ) {
+    
+                    $musik = $this->upload->data('file_name');
+
+                
+                } else { // upload gagal
+                    
+
+                    // pemberitahuan
+                    $html = $this->pesan( $this->upload->display_errors() );
+                    $this->session->set_flashdata('msg', $html);
+
+                    redirect('scene/tambah');
+                }
+            }
+
+
+
             $data = array(
 
                 'author'            => $this->input->post('author'),
@@ -175,13 +207,13 @@
                 'scene_fade_duration' => $this->input->post('fade'),
                 'scene_autoload'      => $this->input->post('autoload'),
                 'scene_status'        => $this->input->post('status'),
+                'scene_music'         => $musik
             );
 
 
             // pemberitahuan
             $html = $this->pesan( "Menambahkan scene baloga 360 berhasil" );
             $this->session->set_flashdata('msg', $html);
-
 
             // execute query insert
             $this->db->insert('scene_info', $data);
@@ -222,6 +254,47 @@
         function model_updatescene( $id_scene_info ) {
 
 
+            // $getDataBalogaById = $this->model_tampilspotById( $id_spot )->row_array();
+            $getDataSceneId = $this->db->get_where('scene_info', ['id_scene_info' => $id_scene_info])->row_array();
+
+            $musik = "";
+            $config['upload_path']  = './assets/file/bg-music/';
+            $config['allowed_types']        = 'mp3';
+            $config['max_size']             = 50000; // max 50 mb
+            $config['file_name']    = uniqid();
+
+            $this->load->library('upload', $config);
+            
+            // cek apakah user melakukan upload foto
+            if ( ! empty($_FILES['userfile']['name']) ) {
+
+                // cek
+                if ( $this->upload->do_upload('userfile') ) {
+
+                    if ( $getDataSceneId['scene_music']) {
+
+                        $direktori = $config['upload_path'] . $getDataSceneId['scene_music'];
+                        unlink( $direktori );
+                    }
+    
+                    $musik = $this->upload->data('file_name');
+
+                
+                } else { // upload gagal
+                    
+
+                    // pemberitahuan
+                    $html = $this->pesan( $this->upload->display_errors() );
+                    $this->session->set_flashdata('msg', $html);
+
+                    redirect('scene/edit/'. $id_scene_info);
+                }
+            } else {
+
+                $musik = $getDataSceneId['scene_music'];
+            }
+
+
             $data = array(
 
                 'author'            => $this->input->post('author'),
@@ -229,12 +302,14 @@
                 'scene_fade_duration' => $this->input->post('fade'),
                 'scene_autoload'      => $this->input->post('autoload'),
                 'scene_status'        => $this->input->post('status'),
+                'scene_music'   => $musik
             );
 
 
             // pemberitahuan
             $html = $this->pesan( "Menyunting scene baloga 360 berhasil" );
             $this->session->set_flashdata('msg', $html);
+
 
 
             // execute query update
@@ -251,6 +326,16 @@
 
          // proses hapus
          function model_hapusscene( $id_scene_info ) {
+
+            // info untuk menghapus scene lama
+            $getDataSceneId = $this->db->get_where('scene_info', ['id_scene_info' => $id_scene_info])->row_array();
+            if ( $getDataSceneId['scene_music']) {
+                
+                $config['upload_path']  = './assets/file/bg-music/';
+                $direktori = $config['upload_path'] . $getDataSceneId['scene_music'];
+                unlink( $direktori );
+            }
+
 
 
             $getDataSceneDetail = $this->db->get_where('scene_detail', ['id_scene_info' => $id_scene_info])->row_array();

@@ -100,6 +100,7 @@
                         'namefileview'  => "V_scene_info_update",
                         'scene' => $dataScene[0]
                     );
+
                     $this->load->view('template/template_backend', $tampilView); 
                 }
 

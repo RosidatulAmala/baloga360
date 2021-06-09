@@ -9,11 +9,11 @@
     <style>
     #panorama {
         width: 100%;
-        height: 450px;
+        height: 95vh;
     }
 
 
-    .custom-hotspot {
+    /* .custom-hotspot {
         height: 50px;
         width: 50px;
         background: #f00;
@@ -44,10 +44,10 @@
         bottom: -20px;
         left: -10px;
         margin: 0 50%;
-    }
+    } */
     </style>
 </head>
-<body>
+<body style="margin: 0px;">
 
 <div id="panorama"></div>
 

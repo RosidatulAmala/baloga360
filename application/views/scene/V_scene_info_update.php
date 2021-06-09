@@ -123,7 +123,7 @@
 
 													<div class="row">
 													
-														<div class="col-md-12">
+														<div class="col-md-5">
 															<div class="form-group">
 																<label>Status</label>
 																<div class="radio-inline">
@@ -135,6 +135,22 @@
 																	<span></span>Disembunyikan</label>
 																</div>
 																<span class="form-text text-muted">Status gambar baloga</span>
+															</div>
+														</div>
+														<div class="col-md-5">
+															<div class="form-group">
+																<label>Background Music</label>
+																<div class="custom-file">
+																	<input type="file" name="userfile" class="form-control">
+																	<label class="" for="customFile">Pilih Suara</label>
+                                                                    <?php
+                                                                    
+                                                                        if ( $scene['info_scene']['scene_music'] ) {
+
+                                                                            echo '<a href="'.base_url('assets/file/bg-music/'. $scene['info_scene']['scene_music']).'" target="_blank">Lihat Dokumen Suara</a>';
+                                                                        }
+                                                                    ?>
+																</div>
 															</div>
 														</div>
 													

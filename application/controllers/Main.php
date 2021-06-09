@@ -98,7 +98,7 @@
                     
                 );
 
-                // print_r( $data['all_scene_created'] );
+                // print_r( $data['scene'] );
                 $this->load->view('template/template_frontend', $data);
             } else {
 
