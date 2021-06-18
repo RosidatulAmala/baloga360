@@ -98,7 +98,7 @@
         // logout
         function processlogout() {
 
-
+            $this->session->sess_destroy();
             redirect('login');
         }
     }

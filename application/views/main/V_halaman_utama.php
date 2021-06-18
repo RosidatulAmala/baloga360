@@ -14,7 +14,7 @@
 								<div class="swiper-slide">
 									<div class="ms-item_fs fl-wrap full-height">
 										<div class="bg"
-											data-bg="https://wallpapercave.com/wp/wp3812038.jpg">
+											data-bg="<?php echo base_url('assets/img/_DSC0269.jpg') ?>">
 										</div>
 										<div class="overlay op7"></div>
 									</div>

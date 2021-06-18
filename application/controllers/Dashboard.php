@@ -9,6 +9,12 @@
         {
             parent::__construct();
 
+            if ( empty( $this->session->userdata('sess_idprofile') ) ) {
+
+                redirect('login');
+            }
+
+
             // $this->load->model();
         }
 
